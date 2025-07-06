@@ -88,7 +88,7 @@ INNER JOIN
 LEFT JOIN 
     payments py ON b.booking_id = py.booking_id
 WHERE 
-    b.start_date >= CURRENT_DATE
+    b.start_date >= CURRENT_DATE AND 1=1
 ORDER BY 
     b.start_date DESC
 OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY;
