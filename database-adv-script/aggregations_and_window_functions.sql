@@ -17,3 +17,4 @@ FROM properties p
 LEFT JOIN bookings b ON p.property_id = b.property_id
 GROUP BY p.property_id, p.name, p.location
 ORDER BY total_bookings DESC;
+
