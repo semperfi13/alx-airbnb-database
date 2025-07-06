@@ -1,3 +1,35 @@
+-- User table indexes
+CREATE INDEX idx_user_email ON users(email);
+CREATE INDEX idx_user_role ON users(role);
+CREATE INDEX idx_user_created_at ON users(created_at);
+
+-- Booking table indexes
+CREATE INDEX idx_booking_property ON bookings(property_id);
+CREATE INDEX idx_booking_user ON bookings(user_id);
+CREATE INDEX idx_booking_status ON bookings(status);
+CREATE INDEX idx_booking_dates ON bookings(start_date, end_date);
+CREATE INDEX idx_booking_created_at ON bookings(created_at);
+
+-- Property table indexes
+CREATE INDEX idx_property_host ON properties(host_id);
+CREATE INDEX idx_property_location ON properties(location);
+CREATE INDEX idx_property_price ON properties(pricepernight);
+CREATE INDEX idx_property_created_at ON properties(created_at);
+
+-- Composite index for common property search patterns
+CREATE INDEX idx_property_search ON properties(location, pricepernight);
+
+
+-- Example query to analyze
+-- EXPLAIN ANALYZE
+SELECT p.property_id, p.name, p.location, p.pricepernight
+FROM properties p
+JOIN bookings b ON p.property_id = b.property_id
+WHERE p.location = 'Paris'
+AND p.pricepernight BETWEEN 100 AND 200
+AND b.start_date > '2023-01-01'
+ORDER BY p.pricepernight;
+
 -- Users Table
 -- Stores user information.
 CREATE TABLE Users (
