@@ -74,7 +74,7 @@ CREATE TABLE reviews (
     review_id UUID PRIMARY KEY,
     property_id UUID NOT NULL,
     user_id UUID NOT NULL,
-    rating INT CHECK (rating >= 1 AND rating <= 5) NOT NULL,
+    rating INT NOT NULL,
     comment TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
